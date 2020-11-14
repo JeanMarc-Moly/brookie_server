@@ -1,9 +1,9 @@
 from dataclasses import dataclass
-from logging import NOTSET, DEBUG, INFO, WARNING, ERROR, CRITICAL
-from pathlib import Path
-from datafiles import datafile
-
 from enum import Enum
+from logging import CRITICAL, DEBUG, ERROR, INFO, NOTSET, WARNING
+from pathlib import Path
+
+from datafiles import datafile
 
 
 @datafile("../configuration.yml", defaults=True)
