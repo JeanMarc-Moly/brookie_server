@@ -1,0 +1,9 @@
+name: importer
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - ipython
+  - pylint
+  - black
+  - jupyter

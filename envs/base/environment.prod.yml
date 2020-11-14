@@ -1,0 +1,12 @@
+name: brookie
+channels:
+  - conda-forge # pip, python
+dependencies:
+  - python=3.9
+  - pip
+  - pip:
+      - python-libarchive
+      - fastapi
+      - uvicorn
+      - datafiles
+      - databases[sqlite]
