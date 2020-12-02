@@ -39,14 +39,17 @@ def get_books():
 BOOKS: DataFrame = get_books()
 
 
-@GET("/{book_id}")
-@GET("/{book_id}/{page}")
+@GET("/api/book/{book_id}")
+async def _(book_id: int):
+    return BOOKS.loc[book_id, :]
+
+
+@GET("/api/book/{book_id}/{page}")
 async def _(book_id: int, page: int = 0):
     book = BOOKS.loc[book_id, :]
     with SeekableArchive(Path(book.path).open("r")) as archive:
         pages = book.pages
         if pages is None:
             pages = book.pages = tuple(sorted(e.pathname for e in archive))
-        return StreamingResponse(
-            BytesIO(archive.read(pages[page])), media_type="image/webp",
-        )
+        # TODO manage IndexError
+        return StreamingResponse(BytesIO(archive.read(pages[page])))
