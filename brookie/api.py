@@ -7,36 +7,33 @@ from pandas import DataFrame
 from starlette.responses import StreamingResponse
 
 from .configuration import CONFIGURATION
-from .database import connect, disconnect, get_sync_cursor
+from .database import connect, disconnect, DATABASE
 
 LIBRARY_PATH = CONFIGURATION.library.full_path
 
-API = FastAPI()
 EVENT = API.on_event
 GET = API.get
 POST = API.post
 WS = API.websocket
 
-EVENT("startup")(connect)
-EVENT("shutdown")(disconnect)
+BOOKS: DataFrame
 
 
-# TODO: Make async
-def get_books():
-    with get_sync_cursor() as db:
-        lib = LIBRARY_PATH
-        return DataFrame(
-            [
-                (id, (lib / path / name).with_suffix("." + format_.lower()), None)
-                for id, path, name, format_ in db.execute(
-                    "SELECT books.id AS id, path, name, format FROM books JOIN data ON books.id = data.book"
-                )
-            ],
-            columns=("id", "path", "pages"),
-        ).set_index("id")
+async def load_books():
+    lib = LIBRARY_PATH
+    global BOOKS
+    BOOKS = DataFrame(
+        [
+            (id, str(lib / path / name) + "." + format_.lower(), None)
+            for id, path, name, format_ in await DATABASE.fetch_all(
+                "SELECT books.id AS id, path, name, format FROM books JOIN data ON books.id = data.book"
+            )
+        ],
+        columns=("id", "path", "pages"),
+    ).set_index("id")
 
 
-BOOKS: DataFrame = get_books()
+API = FastAPI(on_startup=[connect, load_books], on_shutdown=[disconnect])
 
 
 @GET("/api/book/{book_id}")
