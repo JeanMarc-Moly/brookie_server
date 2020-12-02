@@ -15,7 +15,7 @@ class Configuration:
 
     @dataclass
     class Library:
-        _path: str = "/media/Data/Lecture/Magazines/"
+        path: str = "/media/Data/Lecture/Magazines/"
         protocol: str = "sqlite"
 
         @property
@@ -24,7 +24,7 @@ class Configuration:
 
         @property
         def full_path(self) -> Path:
-            return Path(self._path).resolve()
+            return Path(self.path).resolve()
 
         @property
         def db_path(self) -> Path:
