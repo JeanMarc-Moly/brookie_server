@@ -7,3 +7,6 @@ dependencies:
   - pylint
   - black
   - jupyter
+  - pip
+  - pip:
+      - doit
