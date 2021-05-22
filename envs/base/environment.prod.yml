@@ -2,7 +2,7 @@ name: brookie
 channels:
   - conda-forge # pip, python, fastapi, uvicorn, pandas, databases
 dependencies:
-  - python=3.8
+  - python=3.9
   - fastapi
   - uvicorn
   - pandas
