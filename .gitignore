@@ -1,4 +1,6 @@
 .python_env
+node_modules
+
 .idea
 
 **/.pyc
