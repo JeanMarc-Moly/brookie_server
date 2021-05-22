@@ -1,0 +1,10 @@
+server:
+  host: 0.0.0.0
+  port: 5000
+log:
+  level: 20
+  file: journal.log
+library:
+  - category: calibre
+    parameters:
+      path: /media/data/.file/book/final/manga
