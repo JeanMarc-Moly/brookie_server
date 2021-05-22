@@ -11,16 +11,18 @@ PYTHON_BIN = PYTHON_ENV / "bin"
 PYTHON_EXE = PYTHON_BIN / "python"
 ISORT_EXE = PYTHON_BIN / "isort"
 BLACK_EXE = PYTHON_BIN / "black"
-UTEST_EXE = PYTHON_BIN / "unittest/__init__.py"
-PYLINT_EXE = PYTHON_BIN / "pylint"
-PYREVERSE_EXE = PYTHON_BIN / "pyreverse"
+# PYLINT_EXE = PYTHON_BIN / "pylint"
+# PYREVERSE_EXE = PYTHON_BIN / "pyreverse"
 
-PYTHON_INCLUDE = PYTHON_ENV / "include"
-GRAPHVIZ = PYTHON_INCLUDE / "graphviz/graphviz_version.h"
+# PYTHON_LIB_3_9 = PYTHON_ENV / "lib/python3.9"
+# UTEST_EXE = PYTHON_LIB_3_9 / "unittest/__init__.py"
+
+# PYTHON_INCLUDE = PYTHON_ENV / "include"
+# GRAPHVIZ = PYTHON_INCLUDE / "graphviz/graphviz_version.h"
 
 SRC = "src"
 # TEST = "test"
-DEPENDENCIES = "requirements.txt"
+# DEPENDENCIES = "requirements.txt"
 
 
 def task_base_env():
@@ -41,8 +43,8 @@ def task_base_env():
                 PYTHON_ENV,
             ],
         ],
-        targets=[PYTHON_EXE, UTEST_EXE],
-        uptodate=[True],
+        targets=[PYTHON_EXE],
+        # targets=[PYTHON_EXE, UTEST_EXE],
     )
 
 
@@ -63,8 +65,8 @@ def task_dev_env():
                 PYTHON_ENV,
             ]
         ],
-        targets=[BLACK_EXE, ISORT_EXE, GRAPHVIZ, PYREVERSE_EXE, PYLINT_EXE],
-        uptodate=[True],
+        targets=[BLACK_EXE, ISORT_EXE],
+        # targets=[BLACK_EXE, ISORT_EXE, GRAPHVIZ, PYREVERSE_EXE, PYLINT_EXE],
     )
 
 
@@ -77,15 +79,15 @@ def task_env_upgrade():
     )
 
 
-def task_env_freeze():
-    return dict(
-        file_dep=[PYTHON_EXE],
-        actions=[
-            [f""""{MAMBA}" list --export > "{DEPENDENCIES}".export"""],
-            [f""""{MAMBA}" list --explicit > "{DEPENDENCIES}".explicit"""],
-        ],
-        targets=[DEPENDENCIES],
-    )
+# def task_env_freeze():
+#     return dict(
+#         file_dep=[PYTHON_EXE],
+#         actions=[
+#             [f""""{MAMBA}" list --export > "{DEPENDENCIES}".export"""],
+#             [f""""{MAMBA}" list --explicit > "{DEPENDENCIES}".explicit"""],
+#         ],
+#         targets=[DEPENDENCIES],
+#     )
 
 
 def task_format():
@@ -119,9 +121,9 @@ def task_format():
 #     )
 
 
-def task_lint():
-    return dict(
-        file_dep=[PYLINT_EXE],
-        actions=[[PYLINT_EXE, SRC]],
-        uptodate=[False],
-    )
+# def task_lint():
+#     return dict(
+#         file_dep=[PYLINT_EXE],
+#         actions=[[PYLINT_EXE, SRC]],
+#         uptodate=[False],
+#     )
