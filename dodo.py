@@ -29,7 +29,7 @@ def task_base_env():
     return dict(
         file_dep=[BASE_ENV_PROD],
         actions=[
-            ["git", "config", "core.hooksPath", ".git-hooks"],
+            ["git", "config", "--local", "core.hooksPath", ".git-hooks"],
             ["conda", "install", "-n", "base", "-c", "conda-forge", MAMBA, "--yes"],
             [
                 MAMBA,
