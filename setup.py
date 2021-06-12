@@ -87,7 +87,7 @@ setup(
             "traitlets==5.0.5; python_version >= '3.7'",
             "typed-ast==1.4.3",
             "typing-extensions==3.10.0.0",
-            "urllib3==1.26.5; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4' and python_version < '4'",
+            "urllib3==1.26.5; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4' and python_version < '4.0'",
             "vistir==0.5.2; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
             "wcwidth==0.2.5",
             "wheel==0.36.2; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4'",
@@ -95,6 +95,6 @@ setup(
         ]
     },
     dependency_links=[
-        "git+https://github.com/JeanMarc-Moly/brookie_plugin_library_abstract.git@5927ef6157f050988f6a54ef6c9ba059b419ce40#egg=brookie-plugin-library-abstract"
+        "git+https://github.com/JeanMarc-Moly/brookie_plugin_library_abstract.git@78f9ffe34f1bcb33e915a7929e3f4ae87f4974b7#egg=brookie-plugin-library-abstract"
     ],
 )
