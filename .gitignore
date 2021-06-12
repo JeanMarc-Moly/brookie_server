@@ -1,8 +1,6 @@
-.python_env
 .idea
+.vscode
 
 **/.pyc
 **/__pycache__
 **/mypy_cache
-
-sandbox

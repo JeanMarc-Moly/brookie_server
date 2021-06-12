@@ -1,0 +1,31 @@
+[[source]]
+url = 'https://pypi.python.org/simple'
+verify_ssl = true
+name = 'pypi'
+
+[requires]
+python_version = '3.9.5'
+
+[packages]
+fastapi = "*"
+uvicorn = "*"
+pyyaml = "*"
+pydantic = "*"
+brookie_plugin_library_abstract = {git = "https://github.com/JeanMarc-Moly/brookie_plugin_library_abstract.git"}
+
+[pipenv]
+allow_prereleases = true
+
+[dev-packages]
+ipython = "*"
+pylint = "*"
+black = "*"
+isort = "*"
+mypy = "*"
+pipenv-setup = "*"
+
+[scripts]
+install_dev = 'bash script/install_dev.sh'
+format = 'bash script/format.sh'
+upgrade = 'bash script/upgrade.sh'
+server = 'python -m brookie_server'
