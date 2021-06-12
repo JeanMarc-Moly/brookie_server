@@ -8,7 +8,6 @@ from fastapi.responses import StreamingResponse
 
 # from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from libarchive import SeekableArchive
 
 from .configuration import CONFIGURATION
 
@@ -48,9 +47,7 @@ async def _(library_id: int, book_id: int):
 
 @GET("/api/book/{book_id}/stream", response_class=StreamingResponse)
 async def _(book_id: int):
-    return StreamingResponse(
-        read_file_stream_by_file(book_id),
-    )
+    return StreamingResponse(read_file_stream_by_file(book_id),)
 
 
 # @GET("/api/book/{book_id}/stream", response_class=StreamingResponse)

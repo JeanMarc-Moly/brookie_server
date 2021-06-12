@@ -1,10 +1,6 @@
-.python_env
-node_modules
-
 .idea
+.vscode
 
 **/.pyc
 **/__pycache__
 **/mypy_cache
-
-.doit.db.*

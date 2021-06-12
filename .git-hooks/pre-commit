@@ -1,2 +1,2 @@
 #!/bin/sh
-doit format
+pipenv run format
