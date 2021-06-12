@@ -9,6 +9,14 @@ API = FastAPI()
 GET = API.get
 
 
+@GET("/api/book/{library_id}/{book_id}/cover")
+async def _(library_id: int, book_id: int):
+    async with L[library_id] as l:
+        return StreamingResponse(
+            await l.get_book_cover(book_id), 200, {"Cache-Control": "immutable"}
+        )
+
+
 @GET("/api/book/{library_id}/{book_id}/{page}")
 async def _(library_id: int, book_id: int, page: int = 0):
     async with L[library_id] as l:
