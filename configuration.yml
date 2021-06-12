@@ -5,6 +5,6 @@ log:
   level: 20
   file: journal.log
 library:
-  - category: calibre
-    parameters:
-      path: /media/data/.file/book/final/manga
+  - name: manga
+    plugin: calibre
+    path: /media/data/.file/book/final/manga

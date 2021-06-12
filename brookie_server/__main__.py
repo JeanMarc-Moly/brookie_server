@@ -1,4 +1,4 @@
-#!./.python_env/bin/python
+#!./.venv/bin/python
 
 from uvicorn import run
 

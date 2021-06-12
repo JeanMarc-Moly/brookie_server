@@ -1,19 +1,25 @@
-from enum import Enum
+from contextlib import suppress
+from inspect import getmembers
+from typing import Generator, Type, Union
 
-from .abstract import Library
-from .calibre import CalibreLibrary
+from brookie_plugin_library_abstract import Library
+from pkg_resources import working_set
 
+from .error import NoLibrary
 
-class Libraries(Enum):
-    CALIBRE = "calibre"
-
-    def get(self, parameters: dict[str, str]) -> Library:
-        try:
-            return _LIBRARIES[self](**parameters)
-        except KeyError as e:
-            raise Exception(f"Unknown library category {e.args[0]} in configuration")
+PREFIX = "brookie-plugin-library"
 
 
-_LIBRARIES: dict[Libraries, Library] = {
-    Libraries.CALIBRE: CalibreLibrary,
-}
+def get_plugins() -> Generator[Type, None, None]:
+    for d in working_set:
+        if (d_ := d._key).startswith(PREFIX) and not d_.endswith("abstract"):
+            for m in getmembers(__import__(d_.replace("-", "_"))):
+                with suppress(TypeError):
+                    if (cls := m[1]) is not Library and issubclass(cls, Library):
+                        yield cls
+
+
+try:
+    Libraries: Type[Library] = Union[tuple(get_plugins())]
+except TypeError as e:
+    raise NoLibrary from e

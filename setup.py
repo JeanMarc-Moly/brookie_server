@@ -22,20 +22,17 @@ setup(
     packages=find_packages(exclude=["contrib", "docs", "tests"]),
     python_requires=">=3.9.*, <4",
     install_requires=[
+        "aiosqlite==0.17.0",
         "asgiref==3.3.4; python_version >= '3.6'",
-        "cached-property==1.5.2",
-        "classproperties==0.2.0",
         "click==8.0.1; python_version >= '3.6'",
-        "datafiles==0.15",
+        "databases[sqlite]==0.4.3; python_version >= '3.6'",
         "fastapi==0.65.2",
         "h11==0.12.0; python_version >= '3.6'",
-        "minilog==2.0.1; python_version >= '3.6' and python_version < '4.0'",
-        "parse==1.19.0",
-        "pydantic==1.8.2; python_full_version >= '3.6.1'",
-        "ruamel.yaml==0.17.9; python_version >= '3'",
-        "ruamel.yaml.clib==0.2.2; python_version < '3.10' and platform_python_implementation == 'CPython'",
+        "pydantic==1.8.2",
+        "python-libarchive==4.0.1.post1",
+        "pyyaml==5.4.1",
+        "sqlalchemy==1.3.24; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
         "starlette==0.14.2; python_version >= '3.6'",
-        "tomlkit==0.7.2; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4'",
         "typing-extensions==3.10.0.0",
         "uvicorn==0.14.0",
     ],
@@ -97,5 +94,7 @@ setup(
             "wrapt==1.12.1",
         ]
     },
-    dependency_links=[],
+    dependency_links=[
+        "git+https://github.com/JeanMarc-Moly/brookie_plugin_library_abstract.git@5927ef6157f050988f6a54ef6c9ba059b419ce40#egg=brookie-plugin-library-abstract"
+    ],
 )

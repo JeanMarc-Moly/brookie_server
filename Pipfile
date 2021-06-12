@@ -9,7 +9,9 @@ python_version = '3.9.5'
 [packages]
 fastapi = "*"
 uvicorn = "*"
-datafiles = "*"
+pyyaml = "*"
+pydantic = "*"
+brookie_plugin_library_abstract = {git = "https://github.com/JeanMarc-Moly/brookie_plugin_library_abstract.git"}
 
 [pipenv]
 allow_prereleases = true
@@ -26,3 +28,4 @@ pipenv-setup = "*"
 install_dev = 'bash script/install_dev.sh'
 format = 'bash script/format.sh'
 upgrade = 'bash script/upgrade.sh'
+server = 'python -m brookie_server'
