@@ -6,7 +6,7 @@ with (Path(__file__).resolve().parent / "README.md").open(encoding="utf-8") as f
 
 setup(
     name="brookie_server",
-    version="0.2.0",
+    version="0.3.0",
     description="Brookie book server",
     long_description=long_description,
     long_description_content_type="text/markdown",
